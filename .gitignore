@@ -1,0 +1,126 @@
+# .NET build and runtime files
+**/bin/
+**/obj/
+**/out/
+**/publish/
+
+# NuGet packages
+**/packages/
+*.nupkg
+nuget.exe
+
+# Local development files
+*.user
+*.suo
+*.userprefs
+*.userosscache
+*.sln.docstates
+
+# Visual Studio files
+.vs/
+*.vcxitems
+*.vcxitems.filters
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.csproj.user
+*.csproj.assemblyinfo.cs
+*.csproj.nuget.*
+*.csproj.nuget.dgspec.json
+*.csproj.nuget.g.props
+*.csproj.nuget.g.targets
+
+# Rider files
+.idea/
+*.sln.iml
+*.csproj.iml
+
+# VS Code files
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# MSTest test results
+TestResults/
+*.trx
+
+# NUnit test results
+**/TestResults/
+*.TestResult.xml
+
+# xUnit test results
+**/TestResults/
+*.xunit.xml
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Local development cache
+**/.localhistory/
+
+# Azure Functions
+**/local.settings.json
+
+# Azure Static Web Apps
+**/.swa/
+
+# Node.js (if used in the project)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Coverage reports
+**/coverage/
+*.coverage
+*.coveragexml
+
+# Resharper
+_ReSharper.*/
+*.ReSharper
+*.DotSettings.user
+
+# Dotnet tools
+.dotnet/
+.dotnet-tools.json
+
+# Code coverage
+coverage*.json
+coverage*.xml
+lcov.info
+
+# Logs and databases
+*.log
+*.sqlite
+*.sql
+
+# macOS files
+.DS_Store
+
+# Linux files
+*~
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+*.csproj.iml
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

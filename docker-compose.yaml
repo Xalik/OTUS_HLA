@@ -1,0 +1,26 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: "OtusSocNet/OtusSocNet/Dockerfile"
+    ports:
+      - "8080:8080"
+    links:
+      - "postgres"
+    depends_on:
+      postgres:
+        condition: service_healthy
+        restart: true
+  postgres:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=OtusHLA
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d OtusHLA'"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
