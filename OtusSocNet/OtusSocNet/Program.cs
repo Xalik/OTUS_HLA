@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 using OtusSocNet.Dtos;
 using OtusSocNet.Exceptions;
 using OtusSocNet.Extensions;
@@ -8,9 +9,9 @@ using OtusSocNet.Middleware;
 using OtusSocNet.Models.Requests;
 using OtusSocNet.Models.Responses;
 using OtusSocNet.Services.Interfaces;
+using OtusSocNet.Swagger;
 using System.Reflection;
 using System.Text.Json;
-using Utils.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -31,7 +32,14 @@ services.AddBusinessLogic(configuration);
 services.AddDataLayer(configuration);
 
 services.AddEndpointsApiExplorer();
-services.AddSwaggerGen();
+services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+
+    // Use the same JSON naming policy as the API
+    c.UseAllOfToExtendReferenceSchemas();
+    c.SchemaFilter<SnakeCaseSchemaFilter>();
+});
 
 services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
 {
@@ -75,9 +83,9 @@ app.MapPost("/user/register", async ([FromBody] RegisterRequest request, [FromSe
     };
 });
 
-app.MapGet("/user/get/{userId}", async (string userId, [FromServices] IMapper mapper, [FromServices] IUserService userService, CancellationToken cancellationToken) =>
+app.MapGet("/user/get/{userId}", async (Guid userId, [FromServices] IMapper mapper, [FromServices] IUserService userService, CancellationToken cancellationToken) =>
 {
-    if (userId.IsNullOrWhiteSpace())
+    if (userId == default)
         throw new BadRequestException();
 
     var user = await userService.GetUserAsync(userId, cancellationToken);

@@ -9,7 +9,7 @@ public class User
     [Key]
     [Column("id")]
     [MaxLength(36)]
-    public string Id { get; set; }
+    public Guid Id { get; set; }
     
     [Column("first_name")]
     [MaxLength(20)]

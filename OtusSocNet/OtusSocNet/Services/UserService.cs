@@ -19,7 +19,7 @@ public class UserService : IUserService
     private readonly ServiceSettings serviceSettings;
     private readonly IUserRepository userRepository;
     
-    public async Task<string> LoginUserAsync(string userId, string password, CancellationToken cancellationToken = default)
+    public async Task<string> LoginUserAsync(Guid userId, string password, CancellationToken cancellationToken = default)
     {
         var user = await userRepository.GetAsync(userId, cancellationToken);
         if (user is null)
@@ -39,7 +39,7 @@ public class UserService : IUserService
         return token;
     }
 
-    public async Task<string> RegisterUserAsync(RegisterParameters parameters, CancellationToken cancellationToken = default)
+    public async Task<Guid> RegisterUserAsync(RegisterParameters parameters, CancellationToken cancellationToken = default)
     {
         var salt = GenerateSalt();
         var passwordHash = GeneratePasswordHash(parameters.Password, salt);
@@ -47,7 +47,7 @@ public class UserService : IUserService
         var tokenExpires = DateTime.UtcNow.AddDays(serviceSettings.TokenLifetimeInDays * 2);
         var user = new User
         {
-            Id = Guid.NewGuid().ToString(),
+            Id = Guid.NewGuid(),
             FirstName = parameters.FirstName,
             SecondName = parameters.SecondName,
             BirthDate = parameters.BirthDate,
@@ -64,7 +64,7 @@ public class UserService : IUserService
         return user.Id;
     }
 
-    public async Task<User> GetUserAsync(string userId, CancellationToken cancellationToken = default)
+    public async Task<User> GetUserAsync(Guid userId, CancellationToken cancellationToken = default)
     {
         var user = await userRepository.GetAsync(userId, cancellationToken);
         if (user is null)

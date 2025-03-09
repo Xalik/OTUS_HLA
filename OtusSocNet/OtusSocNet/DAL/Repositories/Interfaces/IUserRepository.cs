@@ -10,8 +10,8 @@ public interface IUserRepository
     /// <param name="userId">Идентификатор пользователя</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Пользователь</returns>
-    Task<User?> GetAsync(string userId, CancellationToken cancellationToken = default);
-    
+    Task<User?> GetAsync(Guid userId, CancellationToken cancellationToken = default);
+
     /// <summary>
     /// Обновить токен пользователя
     /// </summary>
@@ -19,7 +19,7 @@ public interface IUserRepository
     /// <param name="userToken">Токен пользовтеля</param>
     /// <param name="tokenLifetimeInDays">Время жизни токена в днях</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    Task UpdateTokenAsync(string userId, string userToken, int tokenLifetimeInDays, CancellationToken cancellationToken = default);
+    Task UpdateTokenAsync(Guid userId, string userToken, int tokenLifetimeInDays, CancellationToken cancellationToken = default);
     
     /// <summary>
     /// Добавить пользователя

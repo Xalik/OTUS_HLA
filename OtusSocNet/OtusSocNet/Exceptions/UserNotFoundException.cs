@@ -2,5 +2,5 @@
 
 public class UserNotFoundException : NotFoundException
 {
-    public UserNotFoundException(string userId) : base($"User not found by id {userId}") { }
+    public UserNotFoundException(Guid userId) : base($"User not found by id {userId}") { }
 }

@@ -11,7 +11,7 @@ public interface IUserService
     /// <param name="password">Пароль</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Токен пользователя</returns>
-    Task<string> LoginUserAsync(string userId, string password, CancellationToken cancellationToken = default);
+    Task<string> LoginUserAsync(Guid userId, string password, CancellationToken cancellationToken = default);
     
     /// <summary>
     /// Зарегистрировать пользователя
@@ -19,7 +19,7 @@ public interface IUserService
     /// <param name="parameters">Параметры</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Идентификатор пользователя</returns>
-    Task<string> RegisterUserAsync(RegisterParameters parameters, CancellationToken cancellationToken = default);
+    Task<Guid> RegisterUserAsync(RegisterParameters parameters, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Получить пользователя по идентификатору
@@ -27,5 +27,5 @@ public interface IUserService
     /// <param name="userId">Идентификатор пользователя</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Пользователь</returns>
-    Task<User> GetUserAsync(string userId, CancellationToken cancellationToken = default);
+    Task<User> GetUserAsync(Guid userId, CancellationToken cancellationToken = default);
 }

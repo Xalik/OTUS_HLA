@@ -22,9 +22,10 @@ public static class ServicesExtensions
     {
         services.AddScoped<IUserRepository, UserRepository>();
         
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        var connectionString = configuration.GetConnectionString("DefaultConnection")
+                               ?? throw new ArgumentNullException("DefaultConnection connection string is null");
 
-        services.AddTransient<NpgsqlConnection>(_ => new NpgsqlConnection(connectionString));
+        services.AddScoped<IConnectionFactory, ConnectionFactory>(_ => new ConnectionFactory(connectionString));
 
         services.AddDbContext<OtusSocNetDbContext>(options =>
             options.UseNpgsql(connectionString));

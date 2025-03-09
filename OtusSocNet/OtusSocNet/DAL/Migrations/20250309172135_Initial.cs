@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace OtusSocNet.API.Migrations
+namespace OtusSocNet.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration
@@ -15,7 +15,7 @@ namespace OtusSocNet.API.Migrations
                 name: "users",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "character varying(36)", maxLength: 36, nullable: false),
+                    id = table.Column<Guid>(type: "uuid", maxLength: 36, nullable: false),
                     first_name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     second_name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     birth_date = table.Column<DateOnly>(type: "date", nullable: false),

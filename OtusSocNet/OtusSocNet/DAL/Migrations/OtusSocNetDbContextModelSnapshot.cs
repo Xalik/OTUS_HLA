@@ -8,7 +8,7 @@ using OtusSocNet.DAL;
 
 #nullable disable
 
-namespace OtusSocNet.API.Migrations
+namespace OtusSocNet.Migrations
 {
     [DbContext(typeof(OtusSocNetDbContext))]
     partial class OtusSocNetDbContextModelSnapshot : ModelSnapshot
@@ -24,9 +24,10 @@ namespace OtusSocNet.API.Migrations
 
             modelBuilder.Entity("OtusSocNet.DAL.Entities.User", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasMaxLength(36)
-                        .HasColumnType("character varying(36)")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<string>("Biography")
